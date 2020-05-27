@@ -201,7 +201,7 @@
       <script src="javascripts/all-c5541673.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;r&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -213,8 +213,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="r">r</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -228,16 +227,75 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#heartbeat" class="toc-h1 toc-link" data-title="Heartbeat">Heartbeat</a>
+          </li>
+          <li>
+            <a href="#token" class="toc-h1 toc-link" data-title="Token">Token</a>
+          </li>
+          <li>
+            <a href="#species-lists" class="toc-h1 toc-link" data-title="Species lists">Species lists</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#extract-species-lists" class="toc-h2 toc-link" data-title="Extract species lists">Extract species lists</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#extract-species-lists-by-country" class="toc-h2 toc-link" data-title="Extract species lists by country">Extract species lists by country</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#plot" class="toc-h1 toc-link" data-title="Plot">Plot</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#plot-metadata" class="toc-h2 toc-link" data-title="Plot Metadata">Plot Metadata</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#plot-metadata-protocols" class="toc-h2 toc-link" data-title="Plot Metadata protocols">Plot Metadata protocols</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#ranges" class="toc-h1 toc-link" data-title="Ranges">Ranges</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#range-list" class="toc-h2 toc-link" data-title="Range: list">Range: list</a>
+                  </li>
+                  <li>
+                    <a href="#range-species" class="toc-h2 toc-link" data-title="Range: species">Range: species</a>
+                  </li>
+                  <li>
+                    <a href="#ranges-genus" class="toc-h2 toc-link" data-title="Ranges: genus">Ranges: genus</a>
+                  </li>
+                  <li>
+                    <a href="#ranges-spatial" class="toc-h2 toc-link" data-title="Ranges: spatial">Ranges: spatial</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#stem" class="toc-h1 toc-link" data-title="Stem">Stem</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#stem-species" class="toc-h2 toc-link" data-title="Stem: species">Stem: species</a>
+                  </li>
+                  <li>
+                    <a href="#stem-genus" class="toc-h2 toc-link" data-title="Stem: genus">Stem: genus</a>
+                  </li>
+                  <li>
+                    <a href="#stem-family" class="toc-h2 toc-link" data-title="Stem: family">Stem: family</a>
+                  </li>
+                  <li>
+                    <a href="#stem-datasource" class="toc-h2 toc-link" data-title="Stem: datasource">Stem: datasource</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#traits" class="toc-h1 toc-link" data-title="Traits">Traits</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#traits-list" class="toc-h2 toc-link" data-title="Traits: list">Traits: list</a>
+                  </li>
+                  <li>
+                    <a href="#traits-family" class="toc-h2 toc-link" data-title="Traits: family">Traits: family</a>
                   </li>
               </ul>
           </li>
@@ -246,7 +304,6 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -254,79 +311,130 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the BIEN API!</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>We have examples for Shell, Ruby, and R. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>An API token is required for most routes. Tokens are passed in a header like <code>Authorization: token</code>.  Or as a curl request: <code>curl -H &quot;Authorization: token&quot; https://bienapi.xyz</code>. </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
+<p>Get a token using the <code>/token</code> route, see below.</p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must get your own personal API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='heartbeat'>Heartbeat</h1>
+<p>List all API routes</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<aside class="notice">
+No API key required for this route.
+</aside>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/heartbeat'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://bienapi.xyz/heartbeat
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"heartbeat"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"/token/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/authorized/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/heartbeat/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/list/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/list/country/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/plot/metadata/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/plot/protocols/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/traits/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/traits/family/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/traits/family/:id/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/occurrence/species/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/occurrence/genus/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/occurrence/family/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/occurrence/count/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/taxonomy/species/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/phylogeny/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/meta/version/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/meta/politicalnames/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/ranges/list/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/ranges/species/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/ranges/genus/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/ranges/spatial/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/stem/species/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/stem/genus/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/stem/family/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/stem/datasource/?"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
+<p><code>GET https://bienapi.xyz/heartbeat</code></p>
+<h1 id='token'>Token</h1>
+<p>Get an API key/token</p>
+
+<aside class="notice">
+No API key required for this route.
+</aside>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/token'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://bienapi.xyz/token
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"token"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo@bar.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;token&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/token</code></p>
+<h1 id='species-lists'>Species lists</h1><h2 id='extract-species-lists'>Extract species lists</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/list'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/list"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"list"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">331065</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aa achalensis"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aa argyrolepis"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aa calceata"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/list</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -336,100 +444,803 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+</tbody></table>
+<h2 id='extract-species-lists-by-country'>Extract species lists by country</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/list/country'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/list/country?country=Canada"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"list/country"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Canada"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species_by_political_division_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abelia grandiflora"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canada"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_new_world"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_cultivated_observation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_cultivated_in_region"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species_by_political_division_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abelia xgrandiflora"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canada"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_new_world"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_cultivated_observation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_cultivated_in_region"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/list/country</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>country_code</td>
+<td>NULL</td>
+<td>country code</td>
+</tr>
+<tr>
+<td>cultivated</td>
 <td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>return cultivated records as well?</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>only_new_world</td>
+<td>false</td>
+<td>return only records from the New World?</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+</tbody></table>
+<h1 id='plot'>Plot</h1><h2 id='plot-metadata'>Plot Metadata</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/plot/metadata'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/plot/metadata"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"plot/metadata"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">631121</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"plot_metadata_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2183</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"plot_metadata_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2204</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/plot/metadata</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields</td>
+<td>NULL</td>
+<td>fields to return, by dafault all are returned</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
+<!-- <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+</aside> -->
+<h2 id='plot-metadata-protocols'>Plot Metadata protocols</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/plot/protocols'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/plot/protocols"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"plot/metadata/protocols"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"sampling_protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"plot_metadata_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"sampling_protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1 ha  transect, stems &gt;= 2.5 cm dbh"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"plot_metadata_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
+<!-- <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside> -->
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>GET https://bienapi.xyz/plot/protocols</code></p>
+<h1 id='ranges'>Ranges</h1><h2 id='range-list'>Range: list</h2>
+<p>List available range maps</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/ranges/list'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/ranges/list"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"ranges/list"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">98829</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aa_argyrolepis"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"gid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aa_colombiana"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"gid"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/ranges/list</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='range-species'>Range: species</h2>
+<p>Range maps for a given species</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/ranges/species'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:species</span> <span class="o">=&gt;</span> <span class="s2">"Abies lasiocarpa"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/ranges/species?species=Abies%20lasiocarpa"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-X</span> DELETE
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"ranges/species"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abies lasiocarpa"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abies_lasiocarpa"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"gid"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"st_astext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MULTIPOLYGON(((-107.75178470368 28.3154733778057, ..."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p><code>GET https://bienapi.xyz/ranges/species</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>species</td>
+<td>NULL</td>
+<td>a species name (binomial: &quot;genus epithet&quot;)</td>
+</tr>
+<tr>
+<td>match_names_only</td>
+<td>false</td>
+<td>check for range maps for the taxa specified w/o downloading range data</td>
+</tr>
+</tbody></table>
+<h2 id='ranges-genus'>Ranges: genus</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/ranges/genus'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:genus</span> <span class="o">=&gt;</span> <span class="s2">"Abies"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/ranges/genus?genus=Abies"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"ranges/genus"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">genus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abies"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abies_alba"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"gid"</span><span class="p">:</span><span class="w"> </span><span class="mi">73</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"st_astext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MULTIPOLYGON(((-77.0940591727373 38.9862810126957, ...)))"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abies_amabilis"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"gid"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"st_astext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MULTIPOLYGON(((-119.61169766459 33.3287672107037, ...)))"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abies_balsamea"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"gid"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"st_astext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MULTIPOLYGON(((-84.0403833648593 35.4759177778039, ...)))"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/ranges/genus</code></p>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>genus</td>
+<td>NULL</td>
+<td>a genus name</td>
+</tr>
+<tr>
+<td>match_names_only</td>
+<td>false</td>
+<td>check for range maps for the taxa specified w/o downloading range data</td>
+</tr>
+</tbody></table>
+<h2 id='ranges-spatial'>Ranges: spatial</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/ranges/spatial'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:wkt</span> <span class="o">=&gt;</span> <span class="s2">"POLYGON((-114.03 34.54,-112.67 34.54,-112.67 33.19,-114.03 33.19,-114.03 34.54))"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/ranges/spatial?wkt=POLYGON((-114.03 34.54,-112.67 34.54,-112.67 33.19,-114.03 33.19,-114.03 34.54))"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"ranges/spatial"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">wkt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"POLYGON((-114.03 34.54,-112.67 34.54,-112.67 33.19,-114.03 33.19,-114.03 34.54))"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"me"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/ranges/spatial</code></p>
+<h3 id='query-parameters-7'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>wkt</td>
+<td>NULL</td>
+<td>xx</td>
+</tr>
+<tr>
+<td>species_names_only</td>
+<td>false</td>
+<td>xx</td>
+</tr>
+<tr>
+<td>crop_ranges</td>
+<td>false</td>
+<td>xx</td>
+</tr>
+</tbody></table>
+<h1 id='stem'>Stem</h1><h2 id='stem-species'>Stem: species</h2>
+<p>Extract stem data for a species</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/stem/species'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:species</span> <span class="o">=&gt;</span> <span class="s2">"Abies amabilis"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/stem/species?species=Abies%20amabilis"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"stem/species"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abies amabilis"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">15619</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"analytical_stem_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70784983</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIA"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U.S. Forest Inventory and Analysis (FIA) National Program"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greg Reams"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48.603513"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-121.069843"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_new_world"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"analytical_stem_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70785003</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIA"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U.S. Forest Inventory and Analysis (FIA) National Program"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greg Reams"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45.351508"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-121.847807"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_new_world"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/stem/species</code></p>
+<h3 id='query-parameters-8'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>species</td>
+<td>NULL</td>
+<td>a species name (binomial: &quot;genus epithet&quot;)</td>
+</tr>
+</tbody></table>
+<h2 id='stem-genus'>Stem: genus</h2>
+<p>Extract stem data for a genus</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/stem/genus'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:genus</span> <span class="o">=&gt;</span> <span class="s2">"Tovomita"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/stem/genus?genus=Tovomita"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"stem/genus"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">genus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Tovomita"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">460</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"analytical_stem_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">63198198</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEAM"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manaus"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eduardo Eler"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-2.9289898"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-59.9468382"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_new_world"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"analytical_stem_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">63348187</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEAM"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manaus"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eduardo Eler"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-2.9289898"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-59.9468382"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_new_world"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/stem/genus</code></p>
+<h3 id='query-parameters-9'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>genus</td>
+<td>NULL</td>
+<td>a genus name</td>
+</tr>
+</tbody></table>
+<h2 id='stem-family'>Stem: family</h2>
+<p>Extract stem data for a family</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/stem/family'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:family</span> <span class="o">=&gt;</span> <span class="s2">"Marantaceae"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/stem/family?family=Marantaceae"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"stem/family"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Marantaceae"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"analytical_stem_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75556961</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALVIAS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gentry Transect Dataset"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James S. MIller"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"analytical_stem_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75556961</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALVIAS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gentry Transect Dataset"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James S. MIller"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/stem/family</code></p>
+<h3 id='query-parameters-10'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>family</td>
+<td>NULL</td>
+<td>a family name</td>
+</tr>
+</tbody></table>
+<h2 id='stem-datasource'>Stem: datasource</h2>
+<p>Extract stem data for a datasource</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/stem/datasource'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:datasource</span> <span class="o">=&gt;</span> <span class="s2">"SALVIAS"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/stem/datasource?datasource=SALVIAS"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"stem/datasource"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">datasource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SALVIAS"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">188628</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"analytical_stem_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31795391</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALVIAS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"La Selva Secondary Forest Plots"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Susan Letcher"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.399"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-84.0995"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"analytical_stem_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31795391</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALVIAS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"La Selva Secondary Forest Plots"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Susan Letcher"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.399"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-84.0995"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"plot_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LSSFP_26"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/stem/datasource</code></p>
+<h3 id='query-parameters-11'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>datasource</td>
+<td>NULL</td>
+<td>a datasource name</td>
+</tr>
+</tbody></table>
+<h1 id='traits'>Traits</h1><h2 id='traits-list'>Traits: list</h2>
+<p>List all available types of trait data</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/traits'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/traits"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"traits"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"trait_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diameter at breast height (1.3 m)"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"trait_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flower color"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/traits</code></p>
+<h3 id='query-parameters-12'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+</tbody></table>
+<h2 id='traits-family'>Traits: family</h2>
+<p>Extract all trait data for given families</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/traits/family'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:family</span> <span class="o">=&gt;</span> <span class="s2">"Poaceae"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/traits/family?family=Poaceae"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"traits/family"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Poaceae"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"me"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/traits/family</code></p>
+<h3 id='query-parameters-13'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
@@ -437,7 +1248,7 @@ Remember — a happy kitten is an authenticated kitten!
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>BIEN API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -496,8 +1307,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="r">r</a>
           </div>
       </div>
     </div>
