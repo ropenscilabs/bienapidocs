@@ -314,6 +314,20 @@
               </ul>
           </li>
           <li>
+            <a href="#taxonomy" class="toc-h1 toc-link" data-title="Taxonomy">Taxonomy</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#taxonomy-species" class="toc-h2 toc-link" data-title="Taxonomy: species">Taxonomy: species</a>
+                  </li>
+                  <li>
+                    <a href="#taxonomy-genus" class="toc-h2 toc-link" data-title="Taxonomy: genus">Taxonomy: genus</a>
+                  </li>
+                  <li>
+                    <a href="#taxonomy-family" class="toc-h2 toc-link" data-title="Taxonomy: family">Taxonomy: family</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#citations" class="toc-h1 toc-link" data-title="Citations">Citations</a>
               <ul class="toc-list-h2">
                   <li>
@@ -404,24 +418,26 @@ No API key required for this route.
 <h1 id='token'>Token</h1>
 <p>Get an API key/token</p>
 
+<p>Store the token, ideally in an environment variable, for example: <code>BIEN_API_KEY</code>. We use <code>BIEN_API_KEY</code> in the examples throughout the documentation here.</p>
+
 <aside class="notice">
 No API key required for this route.
 </aside>
 <div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
 
 <span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/token'</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/token'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"jane.doe@gmail.com"</span><span class="p">}</span>
 <span class="n">res</span><span class="p">.</span><span class="nf">body</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://bienapi.xyz/token
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://bienapi.xyz/token?email<span class="o">=</span>jane.doe@gmail.com
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
-</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"token"</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"token"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"jane.doe@gmail.com"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo@bar.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane.doe@gmail.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;token&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -1519,6 +1535,229 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <td>a family name (e.g. Pinaceae)</td>
 </tr>
 </tbody></table>
+<h1 id='taxonomy'>Taxonomy</h1><h2 id='taxonomy-species'>Taxonomy: species</h2>
+<p>Extract taxonomy data for a species</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/taxonomy/species'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:species</span> <span class="o">=&gt;</span> <span class="s2">"Pinus contorta"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/taxonomy/species?species=Pinus%20contorta"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"taxonomy/species"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Pinus contorta"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bien_taxonomy_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">133727</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"higher_plant_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gymnosperms (conifers)"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_taxonomic_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accepted"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinaceae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_genus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinus"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinus contorta"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(Balf.) Engelm."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinales"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equisetopsida"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bien_taxonomy_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">540039</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"higher_plant_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gymnosperms (conifers)"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_taxonomic_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accepted"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinaceae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_genus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinus"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinus contorta"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(Balf.) Engelm."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinales"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equisetopsida"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/taxonomy/species/</code></p>
+<h3 id='query-parameters-17'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>species</td>
+<td>NULL</td>
+<td>a species name (binomial: &quot;genus epithet&quot;)</td>
+</tr>
+</tbody></table>
+<h2 id='taxonomy-genus'>Taxonomy: genus</h2>
+<p>Extract taxonomy data for a genus</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/taxonomy/genus'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:genus</span> <span class="o">=&gt;</span> <span class="s2">"Carnegiea"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/taxonomy/genus?genus=Carnegiea"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"taxonomy/genus"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">genus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Carnegiea"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bien_taxonomy_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">191125</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"higher_plant_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flowering plants"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"superorder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caryophyllanae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_taxonomic_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accepted"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cactaceae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_genus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carnegiea"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carnegiea gigantea"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(Engelm.) Britton &amp; Rose"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caryophyllales"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equisetopsida"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bien_taxonomy_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">338519</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"higher_plant_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flowering plants"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"superorder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caryophyllanae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_taxonomic_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accepted"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cactaceae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_genus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carnegiea"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carnegiea gigantea"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(Engelm.) Britton &amp; Rose"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caryophyllales"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equisetopsida"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/taxonomy/genus/</code></p>
+<h3 id='query-parameters-18'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>genus</td>
+<td>NULL</td>
+<td>a genus name (e.g., &quot;Pinus&quot;)</td>
+</tr>
+</tbody></table>
+<h2 id='taxonomy-family'>Taxonomy: family</h2>
+<p>Extract taxonomy data for a family</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/taxonomy/family'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:family</span> <span class="o">=&gt;</span> <span class="s2">"Cactaceae"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/taxonomy/family?family=Cactaceae"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"taxonomy/family"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Cactaceae"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">6013</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bien_taxonomy_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">781819</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"higher_plant_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flowering plants"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"superorder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caryophyllanae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_taxonomic_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accepted"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cactaceae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_genus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acanthocalycium"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acanthocalycium ferrarii"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rausch"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caryophyllales"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equisetopsida"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bien_taxonomy_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">762614</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"higher_plant_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flowering plants"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"superorder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caryophyllanae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_taxonomic_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accepted"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cactaceae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_genus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acanthocalycium"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acanthocalycium klimpelianum"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Backeb."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caryophyllales"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"taxon_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equisetopsida"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/taxonomy/family/</code></p>
+<h3 id='query-parameters-19'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>family</td>
+<td>NULL</td>
+<td>a family name (e.g., &quot;Cactaceae&quot;)</td>
+</tr>
+</tbody></table>
 <h1 id='citations'>Citations</h1><h2 id='citations-traits'>Citations: traits</h2>
 <p>Extract citation data for a trait</p>
 <div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
@@ -1528,7 +1767,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/meta/citations/traits/20024404/'</span>
 <span class="n">res</span><span class="p">.</span><span class="nf">body</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
-  <span class="s2">"https://bienapi.xyz//meta/citations/traits/20024404/"</span> | jq <span class="nb">.</span>
+  <span class="s2">"https://bienapi.xyz/meta/citations/traits/20024404/"</span> | jq <span class="nb">.</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
 </span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
 </span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
@@ -1563,7 +1802,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/meta/citations/occurrence/22/'</span>
 <span class="n">res</span><span class="p">.</span><span class="nf">body</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
-  <span class="s2">"https://bienapi.xyz//meta/citations/occurrence/22/"</span> | jq <span class="nb">.</span>
+  <span class="s2">"https://bienapi.xyz/meta/citations/occurrence/22/"</span> | jq <span class="nb">.</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
 </span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
 </span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
@@ -1622,11 +1861,11 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Bad Request -- Your request is invalid. Check your request.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>Unauthorized -- Your API key is invalid or you have not supplied a key.</td>
 </tr>
 <tr>
 <td>404</td>
@@ -1645,6 +1884,8 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+
+<p>If you&#39;re not sure what to do, <a href="https://github.com/ropenscilabs/bienapi/issues">open an issue</a>.</p>
 
 <!-- 403 | Forbidden -- The kitten requested is hidden for administrators only.
 406 | Not Acceptable -- You requested a format that isn't json.
