@@ -7,6 +7,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - r
 
 toc_footers:
+  - <a href='https://github.com/ropenscilabs/bienapidocs'>Docs Source</a>
+  - <a href='https://github.com/ropenscilabs/bienapidocs/issues'>Suggest changes</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
