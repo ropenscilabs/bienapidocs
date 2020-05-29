@@ -300,6 +300,31 @@
               </ul>
           </li>
           <li>
+            <a href="#occurrences" class="toc-h1 toc-link" data-title="Occurrences">Occurrences</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#occurrences-species" class="toc-h2 toc-link" data-title="Occurrences: species">Occurrences: species</a>
+                  </li>
+                  <li>
+                    <a href="#occurrences-genus" class="toc-h2 toc-link" data-title="Occurrences: genus">Occurrences: genus</a>
+                  </li>
+                  <li>
+                    <a href="#occurrences-family" class="toc-h2 toc-link" data-title="Occurrences: family">Occurrences: family</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#citations" class="toc-h1 toc-link" data-title="Citations">Citations</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#citations-traits" class="toc-h2 toc-link" data-title="Citations: traits">Citations: traits</a>
+                  </li>
+                  <li>
+                    <a href="#citations-occurrences" class="toc-h2 toc-link" data-title="Citations: occurrences">Citations: occurrences</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -315,9 +340,9 @@
 
 <p>We have examples for Shell, Ruby, and R. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='authentication'>Authentication</h1>
-<p>An API token is required for most routes. Tokens are passed in a header like <code>Authorization: token</code>.  Or as a curl request: <code>curl -H &quot;Authorization: token&quot; https://bienapi.xyz</code>. </p>
+<p>An API token is required for most routes. Tokens are passed in a header like <code>Authorization: token</code>, for example: <code>curl -H &quot;Authorization: token&quot; https://bienapi.xyz</code>. </p>
 
-<p>Get a token using the <code>/token</code> route, see below.</p>
+<p>Get a token using the <a href="#token">/token</a> route.</p>
 
 <aside class="notice">
 You must get your own personal API key.
@@ -335,7 +360,6 @@ No API key required for this route.
 <span class="n">res</span><span class="p">.</span><span class="nf">body</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://bienapi.xyz/heartbeat
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
 </span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"heartbeat"</span><span class="p">)</span><span class="w">
 </span></code></pre></div>
@@ -388,7 +412,6 @@ No API key required for this route.
 <span class="n">res</span><span class="p">.</span><span class="nf">body</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://bienapi.xyz/token
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
 </span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"token"</span><span class="p">)</span><span class="w">
 </span></code></pre></div>
@@ -410,8 +433,8 @@ No API key required for this route.
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/list"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"list"</span><span class="p">)</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -463,8 +486,8 @@ No API key required for this route.
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/list/country?country=Canada"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"list/country"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Canada"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -538,8 +561,8 @@ No API key required for this route.
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/plot/metadata"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"plot/metadata"</span><span class="p">)</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -597,8 +620,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/plot/protocols"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"plot/metadata/protocols"</span><span class="p">)</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -634,8 +657,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/ranges/list"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"ranges/list"</span><span class="p">)</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -688,8 +711,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/ranges/species?species=Abies%20lasiocarpa"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"ranges/species"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abies lasiocarpa"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -747,8 +770,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/ranges/genus?genus=Abies"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"ranges/genus"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">genus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abies"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -816,8 +839,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/ranges/spatial?wkt=POLYGON((-114.03 34.54,-112.67 34.54,-112.67 33.19,-114.03 33.19,-114.03 34.54))"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"ranges/spatial"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">wkt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"POLYGON((-114.03 34.54,-112.67 34.54,-112.67 33.19,-114.03 33.19,-114.03 34.54))"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -873,8 +896,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/stem/species?species=Abies%20amabilis"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"stem/species"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Abies amabilis"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -946,8 +969,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/stem/genus?genus=Tovomita"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"stem/genus"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">genus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Tovomita"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -1019,8 +1042,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/stem/family?family=Marantaceae"</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"stem/family"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Marantaceae"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -1086,8 +1109,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/stem/datasource?datasource=SALVIAS"</span> | jq <span class="nb">.</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"stem/datasource"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">datasource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SALVIAS"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -1158,8 +1181,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/traits"</span> | jq <span class="nb">.</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"traits"</span><span class="p">)</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -1212,8 +1235,8 @@ Remember — a happy kitten is an authenticated kitten!
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
   <span class="s2">"https://bienapi.xyz/traits/family?family=Poaceae"</span> | jq <span class="nb">.</span>
 </code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
-
-</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
 </span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"traits/family"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Poaceae"</span><span class="p">))</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -1243,10 +1266,349 @@ Remember — a happy kitten is an authenticated kitten!
 <td>record number to start at</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+<h1 id='occurrences'>Occurrences</h1><h2 id='occurrences-species'>Occurrences: species</h2>
+<p>Extract occurrence data for a given species</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/occurrence/species'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:species</span> <span class="o">=&gt;</span> <span class="s2">"Pinus contorta"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/occurrence/species?species=Pinus%20contorta"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"occurrence/species"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Pinus contorta"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42841561</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VegBank"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glacier National Park"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve Cooper"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48.682812748"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-113.583088685"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date_collected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-07-11"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinus contorta"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42898022</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VegBank"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glacier National Park"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve Cooper"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48.682812748"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-113.583088685"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date_collected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-07-11"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinus contorta"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="warning">
+The count (number of records found) is not being reported for now. Hoping to fix that soon. 
 </aside>
+
+<aside class="notice">
+More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
+</aside>
+
+<p><code>GET https://bienapi.xyz/occurrence/species/</code></p>
+<h3 id='query-parameters-14'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>species</td>
+<td>NULL</td>
+<td>a species name (binomial: &quot;genus epithet&quot;)</td>
+</tr>
+</tbody></table>
+<h2 id='occurrences-genus'>Occurrences: genus</h2>
+<p>Extract occurrence data for a given genus</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/occurrence/genus'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:genus</span> <span class="o">=&gt;</span> <span class="s2">"Pinus"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/occurrence/genus?genus=Pinus"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"occurrence/genus"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">genus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Pinus"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38103840</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VegBank"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glacier National Park"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve Cooper"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48.506137075"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-113.369232885"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date_collected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-08-17"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_genus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abies"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abies lasiocarpa"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37449270</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VegBank"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glacier National Park"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve Cooper"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48.576218428"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-113.826884591"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date_collected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-08-02"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_genus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abies"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abies lasiocarpa"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="warning">
+The count (number of records found) is not being reported for now. Hoping to fix that soon. 
+</aside>
+
+<aside class="notice">
+More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
+</aside>
+
+<p><code>GET https://bienapi.xyz/occurrence/genus/</code></p>
+<h3 id='query-parameters-15'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>genus</td>
+<td>NULL</td>
+<td>a genus name (e.g., Pinus)</td>
+</tr>
+</tbody></table>
+<h2 id='occurrences-family'>Occurrences: family</h2>
+<p>Extract occurrence data for a given species</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/occurrence/family'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:family</span> <span class="o">=&gt;</span> <span class="s2">"Pinaceae"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/occurrence/family?family=Pinaceae"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"occurrence/family"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Pinaceae"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53172406</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VegBank"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Southwest GAP, Nevada"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lisa Hahn"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custodial_institution_codes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"collection_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date_collected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2002-09-18"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinaceae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinus flexilis"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"taxonobservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">57033225</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIA"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U.S. Forest Inventory and Analysis (FIA) National Program"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataowner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greg Reams"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custodial_institution_codes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"collection_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date_collected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2004-06-18"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinaceae"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scrubbed_species_binomial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinus monophylla"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="warning">
+The count (number of records found) is not being reported for now. Hoping to fix that soon. 
+</aside>
+
+<aside class="notice">
+More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
+</aside>
+
+<p><code>GET https://bienapi.xyz/occurrence/family/</code></p>
+<h3 id='query-parameters-16'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>10</td>
+<td>number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>record number to start at</td>
+</tr>
+<tr>
+<td>family</td>
+<td>NULL</td>
+<td>a family name (e.g. Pinaceae)</td>
+</tr>
+</tbody></table>
+<h1 id='citations'>Citations</h1><h2 id='citations-traits'>Citations: traits</h2>
+<p>Extract citation data for a trait</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/meta/citations/traits/20024404/'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz//meta/citations/traits/20024404/"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"/meta/citations/traits/20024404/"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url_source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_citation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"project_pi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greg Reams"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"project_pi_contact"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"citation_bibtex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">@MISC{noauthor_2013-mm,</span><span class="se">\n</span><span class="s2">  title        = </span><span class="se">\"</span><span class="s2">Forest Inventory and Analysis National Program</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  year         =  2013,</span><span class="se">\n</span><span class="s2">  howpublished = </span><span class="se">\"\\</span><span class="s2">url{http://www.fia.fs.fed.us/}</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  note         = </span><span class="se">\"</span><span class="s2">Accessed: 2013-1-19</span><span class="se">\"\n</span><span class="s2">}</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/meta/citations/traits/:id/</code></p>
+<h2 id='citations-occurrences'>Citations: occurrences</h2>
+<p>Extract citation data for an occurrence</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/meta/citations/occurrence/22/'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz//meta/citations/occurrence/22/"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"/meta/citations/occurrence/22/"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"observation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plot"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Badlands National Park"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Badlands National Park"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data owner"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"proximate_provider_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VegBank"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"proximate_provider_datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1439</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"primary_contact_firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jim"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"primary_contact_lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Von Low"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"access_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"locality_error_added"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"locality_error_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reduced precision, selected plots only. Coordinate precision as been reduced to protect endangered species and/or hide locality of private land. Reduction in precision for each plot, if any, is indicated in column coord_uncertainty_m"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"observation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plot"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1439</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VegBank"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"proximate provider"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"proximate_provider_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VegBank"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"proximate_provider_datasource_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1439</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://vegbank.org/"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source_citation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">@ARTICLE{Peet2012-qw,</span><span class="se">\n</span><span class="s2"> title = </span><span class="se">\"</span><span class="s2">{VegBank}: a permanent, open-access archive for vegetation plot</span><span class="se">\n</span><span class="s2"> data</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2"> author = </span><span class="se">\"</span><span class="s2">Peet, Robert K and Lee, Michael T and Jennings, Michael D and</span><span class="se">\n</span><span class="s2"> Faber-Langendoen, Don</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2"> journal = </span><span class="se">\"</span><span class="s2">Biodivers. Ecol.</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2"> volume = 4,</span><span class="se">\n</span><span class="s2"> pages = </span><span class="se">\"</span><span class="s2">233--241</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2"> year = 2012</span><span class="se">\n</span><span class="s2">}</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"access_conditions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acknowledge"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"access_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"locality_error_added"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"locality_error_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reduced precision, selected plots only. Coordinate precision as been reduced to protect endangered species and/or hide locality of private land. Reduction in precision for each plot, if any, is indicated in column coord_uncertainty_m"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/meta/citations/occurrence/:id/</code></p>
+<h1 id='errors'>Errors</h1>
+<!-- <aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside> -->
 
 <p>BIEN API uses the following error codes:</p>
 
@@ -1265,32 +1627,12 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>Unauthorized -- Your API key is wrong.</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified route could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Method Not Allowed -- You used an invalid HTTP method.</td>
 </tr>
 <tr>
 <td>500</td>
@@ -1301,6 +1643,12 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+
+<!-- 403 | Forbidden -- The kitten requested is hidden for administrators only.
+406 | Not Acceptable -- You requested a format that isn't json.
+410 | Gone -- The kitten requested has been removed from our servers.
+418 | I'm a teapot.
+429 | Too Many Requests -- You're requesting too many kittens! Slow down! -->
 
       </div>
       <div class="dark-box">
