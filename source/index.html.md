@@ -23,9 +23,9 @@ We have examples for Shell, Ruby, and R. You can view code examples in the dark 
 
 # Authentication
 
-An API token is required for most routes. Tokens are passed in a header like `Authorization: token`.  Or as a curl request: `curl -H "Authorization: token" https://bienapi.xyz`. 
+An API token is required for most routes. Tokens are passed in a header like `Authorization: token`, for example: `curl -H "Authorization: token" https://bienapi.xyz`. 
 
-Get a token using the `/token` route, see below.
+Get a token using the [/token](#token) route.
 
 <aside class="notice">
 You must get your own personal API key.
@@ -54,7 +54,6 @@ curl https://bienapi.xyz/heartbeat
 
 ```r
 library(crul)
-
 con <- HttpClient$new("https://bienapi.xyz")
 con$get("heartbeat")
 ```
@@ -120,7 +119,6 @@ curl https://bienapi.xyz/token
 
 ```r
 library(crul)
-
 con <- HttpClient$new("https://bienapi.xyz")
 con$get("token")
 ```
@@ -158,8 +156,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("list")
 ```
 
@@ -212,8 +210,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("list/country", query = list(country = "Canada"))
 ```
 
@@ -280,8 +278,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("plot/metadata")
 ```
 
@@ -336,8 +334,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("plot/metadata/protocols")
 ```
 
@@ -393,8 +391,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("ranges/list")
 ```
 
@@ -448,8 +446,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("ranges/species", query = list(species = "Abies lasiocarpa"))
 ```
 
@@ -499,8 +497,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("ranges/genus", query = list(genus = "Abies"))
 ```
 
@@ -561,8 +559,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("ranges/spatial", query = list(wkt = "POLYGON((-114.03 34.54,-112.67 34.54,-112.67 33.19,-114.03 33.19,-114.03 34.54))"))
 ```
 
@@ -615,8 +613,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("stem/species", query = list(species = "Abies amabilis"))
 ```
 
@@ -685,8 +683,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("stem/genus", query = list(genus = "Tovomita"))
 ```
 
@@ -756,8 +754,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("stem/family", query = list(family = "Marantaceae"))
 ```
 
@@ -820,8 +818,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("stem/datasource", query = list(datasource = "SALVIAS"))
 ```
 
@@ -896,8 +894,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("traits")
 ```
 
@@ -952,8 +950,8 @@ curl -H 'Authorization: '"$BIEN_API_KEY"'' \
 
 ```r
 library(crul)
-
-con <- HttpClient$new("https://bienapi.xyz")
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
 con$get("traits/family", query = list(family = "Poaceae"))
 ```
 
@@ -974,3 +972,372 @@ Parameter | Default | Description
 limit | 10 | number of results to return
 offset | 0 | record number to start at
 
+
+
+
+
+
+
+# Occurrences
+
+## Occurrences: species
+
+Extract occurrence data for a given species
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/occurrence/species', {:species => "Pinus contorta"}
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/occurrence/species?species=Pinus%20contorta" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("occurrence/species", query = list(species = "Pinus contorta"))
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": null,
+  "returned": 3,
+  "data": [
+    {
+      "taxonobservation_id": 42841561,
+      "datasource_id": 85,
+      "datasource": "VegBank",
+      "dataset": "Glacier National Park",
+      "dataowner": "Steve Cooper",
+      "latitude": "48.682812748",
+      "longitude": "-113.583088685",
+      "date_collected": "2000-07-11",
+      "scrubbed_species_binomial": "Pinus contorta"
+    },
+    {
+      "taxonobservation_id": 42898022,
+      "datasource_id": 85,
+      "datasource": "VegBank",
+      "dataset": "Glacier National Park",
+      "dataowner": "Steve Cooper",
+      "latitude": "48.682812748",
+      "longitude": "-113.583088685",
+      "date_collected": "2000-07-11",
+      "scrubbed_species_binomial": "Pinus contorta"
+    }
+  ],
+  "error": null
+}
+```
+
+<aside class="warning">
+The count (number of records found) is not being reported for now. Hoping to fix that soon. 
+</aside>
+
+<aside class="notice">
+More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
+</aside>
+
+`GET https://bienapi.xyz/occurrence/species/`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit | 10 | number of results to return
+offset | 0 | record number to start at
+species | NULL | a species name (binomial: "genus epithet")
+
+
+## Occurrences: genus
+
+Extract occurrence data for a given genus
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/occurrence/genus', {:genus => "Pinus"}
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/occurrence/genus?genus=Pinus" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("occurrence/genus", query = list(genus = "Pinus"))
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": null,
+  "returned": 4,
+  "data": [
+    {
+      "taxonobservation_id": 38103840,
+      "datasource_id": 85,
+      "datasource": "VegBank",
+      "dataset": "Glacier National Park",
+      "dataowner": "Steve Cooper",
+      "latitude": "48.506137075",
+      "longitude": "-113.369232885",
+      "date_collected": "2000-08-17",
+      "scrubbed_genus": "Abies",
+      "scrubbed_species_binomial": "Abies lasiocarpa"
+    },
+    {
+      "taxonobservation_id": 37449270,
+      "datasource_id": 85,
+      "datasource": "VegBank",
+      "dataset": "Glacier National Park",
+      "dataowner": "Steve Cooper",
+      "latitude": "48.576218428",
+      "longitude": "-113.826884591",
+      "date_collected": "2000-08-02",
+      "scrubbed_genus": "Abies",
+      "scrubbed_species_binomial": "Abies lasiocarpa"
+    }
+  ],
+  "error": null
+}
+```
+
+<aside class="warning">
+The count (number of records found) is not being reported for now. Hoping to fix that soon. 
+</aside>
+
+<aside class="notice">
+More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
+</aside>
+
+`GET https://bienapi.xyz/occurrence/genus/`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit | 10 | number of results to return
+offset | 0 | record number to start at
+genus | NULL | a genus name (e.g., Pinus)
+
+
+## Occurrences: family
+
+Extract occurrence data for a given species
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/occurrence/family', {:family => "Pinaceae"}
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/occurrence/family?family=Pinaceae" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("occurrence/family", query = list(family = "Pinaceae"))
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": null,
+  "returned": 2,
+  "data": [
+    {
+      "taxonobservation_id": 53172406,
+      "datasource_id": 21,
+      "datasource": "VegBank",
+      "dataset": "Southwest GAP, Nevada",
+      "dataowner": "Lisa Hahn",
+      "latitude": null,
+      "longitude": null,
+      "custodial_institution_codes": null,
+      "collection_code": null,
+      "date_collected": "2002-09-18",
+      "scrubbed_family": "Pinaceae",
+      "scrubbed_species_binomial": "Pinus flexilis"
+    },
+    {
+      "taxonobservation_id": 57033225,
+      "datasource_id": 65,
+      "datasource": "FIA",
+      "dataset": "U.S. Forest Inventory and Analysis (FIA) National Program",
+      "dataowner": "Greg Reams",
+      "latitude": null,
+      "longitude": null,
+      "custodial_institution_codes": null,
+      "collection_code": null,
+      "date_collected": "2004-06-18",
+      "scrubbed_family": "Pinaceae",
+      "scrubbed_species_binomial": "Pinus monophylla"
+    }
+  ],
+  "error": null
+}
+```
+
+<aside class="warning">
+The count (number of records found) is not being reported for now. Hoping to fix that soon. 
+</aside>
+
+<aside class="notice">
+More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
+</aside>
+
+`GET https://bienapi.xyz/occurrence/family/`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit | 10 | number of results to return
+offset | 0 | record number to start at
+family | NULL | a family name (e.g. Pinaceae)
+
+
+
+
+
+
+
+
+# Citations
+
+## Citations: traits
+
+Extract citation data for a trait
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/meta/citations/traits/20024404/'
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz//meta/citations/traits/20024404/" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("/meta/citations/traits/20024404/")
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": null,
+      "source": null,
+      "url_source": null,
+      "source_citation": null,
+      "access": "public",
+      "project_pi": "Greg Reams",
+      "project_pi_contact": null,
+      "citation_bibtex": "\"@MISC{noauthor_2013-mm,\n  title        = \"Forest Inventory and Analysis National Program\",\n  year         =  2013,\n  howpublished = \"\\url{http://www.fia.fs.fed.us/}\",\n  note         = \"Accessed: 2013-1-19\"\n}\""
+    }
+  ],
+  "error": null
+}
+```
+
+`GET https://bienapi.xyz/meta/citations/traits/:id/`
+
+## Citations: occurrences
+
+Extract citation data for an occurrence
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/meta/citations/occurrence/22/'
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz//meta/citations/occurrence/22/" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("/meta/citations/occurrence/22/")
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "observation_type": "plot",
+      "datasource_id": 22,
+      "source_name": "Badlands National Park",
+      "source_fullname": "Badlands National Park",
+      "source_type": "data owner",
+      "proximate_provider_name": "VegBank",
+      "proximate_provider_datasource_id": 1439,
+      "primary_contact_firstname": "Jim",
+      "primary_contact_lastname": "Von Low",
+      "access_level": "public",
+      "locality_error_added": true,
+      "locality_error_details": "Reduced precision, selected plots only. Coordinate precision as been reduced to protect endangered species and/or hide locality of private land. Reduction in precision for each plot, if any, is indicated in column coord_uncertainty_m"
+    },
+    {
+      "observation_type": "plot",
+      "datasource_id": 1439,
+      "source_name": "VegBank",
+      "source_type": "proximate provider",
+      "proximate_provider_name": "VegBank",
+      "proximate_provider_datasource_id": 1439,
+      "source_url": "http://vegbank.org/",
+      "source_citation": "\"@ARTICLE{Peet2012-qw,\n title = \"{VegBank}: a permanent, open-access archive for vegetation plot\n data\",\n author = \"Peet, Robert K and Lee, Michael T and Jennings, Michael D and\n Faber-Langendoen, Don\",\n journal = \"Biodivers. Ecol.\",\n volume = 4,\n pages = \"233--241\",\n year = 2012\n}\"",
+      "access_conditions": "acknowledge",
+      "access_level": "public",
+      "locality_error_added": false,
+      "locality_error_details": "Reduced precision, selected plots only. Coordinate precision as been reduced to protect endangered species and/or hide locality of private land. Reduction in precision for each plot, if any, is indicated in column coord_uncertainty_m"
+    }
+  ],
+  "error": null
+}
+```
+
+`GET https://bienapi.xyz/meta/citations/occurrence/:id/`
