@@ -103,6 +103,8 @@ con$get("heartbeat")
 
 Get an API key/token
 
+Store the token, ideally in an environment variable, for example: `BIEN_API_KEY`. We use `BIEN_API_KEY` in the examples throughout the documentation here.
+
 <aside class="notice">
 No API key required for this route.
 </aside>
@@ -111,25 +113,25 @@ No API key required for this route.
 require 'faraday'
 
 con = Faraday.new(url: "https://bienapi.xyz")
-res = con.get '/token'
+res = con.get '/token', {:email => "jane.doe@gmail.com"}
 res.body
 ```
 
 ```shell
-curl https://bienapi.xyz/token
+curl https://bienapi.xyz/token?email=jane.doe@gmail.com
 ```
 
 ```r
 library(crul)
 con <- HttpClient$new("https://bienapi.xyz")
-con$get("token")
+con$get("token", query = list(email = "jane.doe@gmail.com"))
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "email": "foo@bar.com",
+  "email": "jane.doe@gmail.com",
   "token": "<token>"
 }
 ```
@@ -1230,6 +1232,232 @@ family | NULL | a family name (e.g. Pinaceae)
 
 
 
+
+
+
+
+# Taxonomy
+
+## Taxonomy: species
+
+Extract taxonomy data for a species
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/taxonomy/species', {:species => "Pinus contorta"}
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/taxonomy/species?species=Pinus%20contorta" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("taxonomy/species", query = list(species = "Pinus contorta"))
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 20,
+  "returned": 10,
+  "data": [
+    {
+      "bien_taxonomy_id": 133727,
+      "higher_plant_group": "gymnosperms (conifers)",
+      "scrubbed_taxonomic_status": "Accepted",
+      "scrubbed_family": "Pinaceae",
+      "scrubbed_genus": "Pinus",
+      "scrubbed_species_binomial": "Pinus contorta",
+      "scrubbed_author": "(Balf.) Engelm.",
+      "taxon_order": "Pinales",
+      "taxon_class": "Equisetopsida"
+    },
+    {
+      "bien_taxonomy_id": 540039,
+      "higher_plant_group": "gymnosperms (conifers)",
+      "scrubbed_taxonomic_status": "Accepted",
+      "scrubbed_family": "Pinaceae",
+      "scrubbed_genus": "Pinus",
+      "scrubbed_species_binomial": "Pinus contorta",
+      "scrubbed_author": "(Balf.) Engelm.",
+      "taxon_order": "Pinales",
+      "taxon_class": "Equisetopsida"
+    }
+  ],
+  "error": null
+}
+```
+
+`GET https://bienapi.xyz/taxonomy/species/`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit | 10 | number of results to return
+offset | 0 | record number to start at
+species | NULL | a species name (binomial: "genus epithet")
+
+
+## Taxonomy: genus
+
+Extract taxonomy data for a genus
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/taxonomy/genus', {:genus => "Carnegiea"}
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/taxonomy/genus?genus=Carnegiea" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("taxonomy/genus", query = list(genus = "Carnegiea"))
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 3,
+  "returned": 3,
+  "data": [
+    {
+      "bien_taxonomy_id": 191125,
+      "higher_plant_group": "flowering plants",
+      "superorder": "Caryophyllanae",
+      "scrubbed_taxonomic_status": "Accepted",
+      "scrubbed_family": "Cactaceae",
+      "scrubbed_genus": "Carnegiea",
+      "scrubbed_species_binomial": "Carnegiea gigantea",
+      "scrubbed_author": "(Engelm.) Britton & Rose",
+      "taxon_order": "Caryophyllales",
+      "taxon_class": "Equisetopsida"
+    },
+    {
+      "bien_taxonomy_id": 338519,
+      "higher_plant_group": "flowering plants",
+      "superorder": "Caryophyllanae",
+      "scrubbed_taxonomic_status": "Accepted",
+      "scrubbed_family": "Cactaceae",
+      "scrubbed_genus": "Carnegiea",
+      "scrubbed_species_binomial": "Carnegiea gigantea",
+      "scrubbed_author": "(Engelm.) Britton & Rose",
+      "taxon_order": "Caryophyllales",
+      "taxon_class": "Equisetopsida"
+    }
+  ],
+  "error": null
+}
+```
+
+`GET https://bienapi.xyz/taxonomy/genus/`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit | 10 | number of results to return
+offset | 0 | record number to start at
+genus | NULL | a genus name (e.g., "Pinus")
+
+
+## Taxonomy: family
+
+Extract taxonomy data for a family
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/taxonomy/family', {:family => "Cactaceae"}
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/taxonomy/family?family=Cactaceae" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("taxonomy/family", query = list(family = "Cactaceae"))
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 6013,
+  "returned": 10,
+  "data": [
+    {
+      "bien_taxonomy_id": 781819,
+      "higher_plant_group": "flowering plants",
+      "superorder": "Caryophyllanae",
+      "scrubbed_taxonomic_status": "Accepted",
+      "scrubbed_family": "Cactaceae",
+      "scrubbed_genus": "Acanthocalycium",
+      "scrubbed_species_binomial": "Acanthocalycium ferrarii",
+      "scrubbed_author": "Rausch",
+      "taxon_order": "Caryophyllales",
+      "taxon_class": "Equisetopsida"
+    },
+    {
+      "bien_taxonomy_id": 762614,
+      "higher_plant_group": "flowering plants",
+      "superorder": "Caryophyllanae",
+      "scrubbed_taxonomic_status": "Accepted",
+      "scrubbed_family": "Cactaceae",
+      "scrubbed_genus": "Acanthocalycium",
+      "scrubbed_species_binomial": "Acanthocalycium klimpelianum",
+      "scrubbed_author": "Backeb.",
+      "taxon_order": "Caryophyllales",
+      "taxon_class": "Equisetopsida"
+    }
+  ],
+  "error": null
+}
+```
+
+`GET https://bienapi.xyz/taxonomy/family/`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit | 10 | number of results to return
+offset | 0 | record number to start at
+family | NULL | a family name (e.g., "Cactaceae")
+
+
+
+
+
+
+
+
 # Citations
 
 ## Citations: traits
@@ -1247,7 +1475,7 @@ res.body
 
 ```shell
 curl -H 'Authorization: '"$BIEN_API_KEY"'' \
-  "https://bienapi.xyz//meta/citations/traits/20024404/" | jq .
+  "https://bienapi.xyz/meta/citations/traits/20024404/" | jq .
 ```
 
 ```r
@@ -1294,7 +1522,7 @@ res.body
 
 ```shell
 curl -H 'Authorization: '"$BIEN_API_KEY"'' \
-  "https://bienapi.xyz//meta/citations/occurrence/22/" | jq .
+  "https://bienapi.xyz/meta/citations/occurrence/22/" | jq .
 ```
 
 ```r

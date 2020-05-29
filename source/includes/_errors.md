@@ -9,12 +9,14 @@ BIEN API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
+400 | Bad Request -- Your request is invalid. Check your request.
+401 | Unauthorized -- Your API key is invalid or you have not supplied a key.
 404 | Not Found -- The specified route could not be found.
 405 | Method Not Allowed -- You used an invalid HTTP method.
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+
+If you're not sure what to do, [open an issue](https://github.com/ropenscilabs/bienapi/issues).
 
 <!-- 403 | Forbidden -- The kitten requested is hidden for administrators only.
 406 | Not Acceptable -- You requested a format that isn't json.
