@@ -227,10 +227,16 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
+            <a href="#data-format" class="toc-h1 toc-link" data-title="Data format">Data format</a>
+          </li>
+          <li>
             <a href="#heartbeat" class="toc-h1 toc-link" data-title="Heartbeat">Heartbeat</a>
           </li>
           <li>
             <a href="#token" class="toc-h1 toc-link" data-title="Token">Token</a>
+          </li>
+          <li>
+            <a href="#authorized" class="toc-h1 toc-link" data-title="Authorized?">Authorized?</a>
           </li>
           <li>
             <a href="#species-lists" class="toc-h1 toc-link" data-title="Species lists">Species lists</a>
@@ -363,6 +369,14 @@
 <aside class="notice">
 You must get your own personal API key.
 </aside>
+<h1 id='data-format'>Data format</h1>
+<p>You can get two types of data back from this API: <strong>JSON</strong> and <strong>CSV</strong>. The way you toggle this behavior is through the HTTP Accept header. The default type is JSON; if you want JSON you don&#39;t need to set the Accept header, but you can if you want.</p>
+
+<p>To get CSV back, you&#39;ll need to set the Accept header as <code>Accept: text/csv</code>.</p>
+
+<p>To set the header for JSON do <code>Accept: application/json</code>.</p>
+
+<p>A few routes ignore the Accept header and always return JSON: <a href="#token">/token</a>, <a href="#authorized">/authorized</a>, and <a href="#heartbeat">/heartbeat</a></p>
 <h1 id='heartbeat'>Heartbeat</h1>
 <p>List all API routes</p>
 
@@ -442,6 +456,36 @@ No API key required for this route.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p><code>GET https://bienapi.xyz/token</code></p>
+<h1 id='authorized'>Authorized?</h1>
+<p>Check that your BIEN API key/token is valid</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/authorized'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/authorized"</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"authorized"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"authorized"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>If not authorized, you&#39;ll get a 403 error:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"token not found; get a token first with the /token route"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/authorized</code></p>
 <h1 id='species-lists'>Species lists</h1><h2 id='extract-species-lists'>Extract species lists</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
 
 <span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
