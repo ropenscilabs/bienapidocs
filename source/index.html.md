@@ -249,7 +249,7 @@ con$get("list")
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 
 ## Extract species lists by country
@@ -313,7 +313,7 @@ Parameter | Default | Description
 country_code | NULL | country code
 cultivated | false | return cultivated records as well?
 only_new_world | false | return only records from the New World?
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 
 
@@ -369,7 +369,7 @@ con$get("plot/metadata")
 Parameter | Default | Description
 --------- | ------- | -----------
 fields | NULL | fields to return, by dafault all are returned
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 
 <!-- <aside class="success">
@@ -482,7 +482,7 @@ con$get("ranges/list")
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 
 
@@ -534,7 +534,7 @@ con$get("ranges/species", query = list(species = "Abies lasiocarpa"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 species | NULL | a species name (binomial: "genus epithet")
 match_names_only | false | check for range maps for the taxa specified w/o downloading range data
@@ -595,7 +595,7 @@ con$get("ranges/genus", query = list(genus = "Abies"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 genus | NULL | a genus name
 match_names_only | false | check for range maps for the taxa specified w/o downloading range data
@@ -638,7 +638,7 @@ con$get("ranges/spatial", query = list(wkt = "POLYGON((-114.03 34.54,-112.67 34.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 wkt | NULL | xx
 species_names_only | false | xx
@@ -718,7 +718,7 @@ con$get("stem/species", query = list(species = "Abies amabilis"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 species | NULL | a species name (binomial: "genus epithet")
 
@@ -788,7 +788,7 @@ con$get("stem/genus", query = list(genus = "Tovomita"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 genus | NULL | a genus name
 
@@ -853,7 +853,7 @@ con$get("stem/family", query = list(family = "Marantaceae"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 family | NULL | a family name
 
@@ -922,7 +922,7 @@ con$get("stem/datasource", query = list(datasource = "SALVIAS"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 datasource | NULL | a datasource name
 
@@ -985,7 +985,7 @@ con$get("traits")
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 
 
@@ -1029,7 +1029,7 @@ con$get("traits/family", query = list(family = "Poaceae"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 
 
@@ -1113,7 +1113,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 species | NULL | a species name (binomial: "genus epithet")
 
@@ -1193,7 +1193,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 genus | NULL | a genus name (e.g., Pinus)
 
@@ -1277,7 +1277,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 family | NULL | a family name (e.g. Pinaceae)
 
@@ -1359,7 +1359,7 @@ con$get("taxonomy/species", query = list(species = "Pinus contorta"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 species | NULL | a species name (binomial: "genus epithet")
 
@@ -1431,7 +1431,7 @@ con$get("taxonomy/genus", query = list(genus = "Carnegiea"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 genus | NULL | a genus name (e.g., "Pinus")
 
@@ -1503,7 +1503,7 @@ con$get("taxonomy/family", query = list(family = "Cactaceae"))
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 10 | number of results to return
+limit | 10 | number of results to return (max: 1000)
 offset | 0 | record number to start at
 family | NULL | a family name (e.g., "Cactaceae")
 
