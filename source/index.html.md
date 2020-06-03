@@ -91,8 +91,12 @@ con$get("heartbeat")
     "/occurrence/family/?",
     "/occurrence/count/?",
     "/taxonomy/species/?",
+    "/taxonomy/genus/?",
+    "/taxonomy/family/?",
     "/phylogeny/?",
     "/meta/version/?",
+    "/meta/citations/traits/:id/?",
+    "/meta/citations/occurrence/:id/?",
     "/meta/politicalnames/?",
     "/ranges/list/?",
     "/ranges/species/?",
@@ -1627,3 +1631,170 @@ con$get("/meta/citations/occurrence/22/")
 ```
 
 `GET https://bienapi.xyz/meta/citations/occurrence/:id/`
+
+
+
+
+
+
+
+
+
+# Meta
+
+## Meta: version
+
+Get current BIEN database version and release date
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/meta/version/'
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/meta/version/" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("/meta/version/")
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "bien_metadata_id": null,
+      "db_version": "4.1.1",
+      "db_release_date": "2018-12-06"
+    }
+  ],
+  "error": null
+}
+```
+
+`GET https://bienapi.xyz/meta/version/`
+
+## Meta: political names
+
+List political divisions and associated geonames codes.
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/meta/politicalnames/'
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/meta/politicalnames/" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("/meta/politicalnames/")
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 43624,
+  "returned": 10,
+  "data": [
+    {
+      "county_parish_id": null,
+      "country": "Romania",
+      "state_province": "Olt",
+      "state_province_ascii": "Olt",
+      "country.code": 798549,
+      "state.code": "29"
+    },
+    {
+      "county_parish_id": null,
+      "country": "Romania",
+      "state_province": "Judeţul Maramureş",
+      "state_province_ascii": "Judetul Maramures",
+      "country.code": 798549,
+      "state.code": "25"
+    }
+  ],
+  "error": null
+}
+```
+
+`GET https://bienapi.xyz/meta/politicalnames/`
+
+
+
+
+
+
+
+
+# Phylogeny
+
+Download BIEN phylogenies
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/phylogeny', {:type => "conservative"}
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/phylogeny?type=conservative" | jq .
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("phylogeny", query = list(type = "conservative"))
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 1,
+  "returned": 1,
+  "data": [
+    {
+      "phylogeny_id": 101,
+      "phylogeny_version": "BIEN_2016_conservative",
+      "replicate": null,
+      "filename": "bien_conservative_phy.tre",
+      "citation": "Enquist, B.J., Sandel, B., Boyle, B., Donoghue II, J.C., Regetz, J., Svenning, J.C., McGill, B.J., Peet, R.K., Jorgensen, P.M., Condit, R., Thiers, B., Schildhauer, M., Smith, S.A., Hinchliff, C.E., Wiser, S.K., Violle, C., äÌmov·, I., Spencer, N., Dolins, S., Morueta-Holme, N., Marcuse-Kubitza, A., Kraft, N.J.B., Ott, J.E., Andelman, S., ter Steege, H., Phillips, O., Sloat, L.L., Narro, M.L., Casler, N., Guaderama, D.,  Merow, C., Maitner, B.S. (in prep) A general signature of taxonomic and phylogenetic diversity across the Land Plants of the New World",
+      "phylogeny": "(((Haplomitrium_blumei:644.869922,Apotreubia_nana:644.869922):20.905451,..."
+    }
+  ],
+  "error": null
+}
+```
+
+`GET https://bienapi.xyz/phylogeny/`
+
+**Query Parameters**
+
+Parameter | Default | Description
+--------- | ------- | -----------
+type | "conservative" | the type of phylogeny, conservative or complete
