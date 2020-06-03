@@ -345,6 +345,20 @@
               </ul>
           </li>
           <li>
+            <a href="#meta" class="toc-h1 toc-link" data-title="Meta">Meta</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#meta-version" class="toc-h2 toc-link" data-title="Meta: version">Meta: version</a>
+                  </li>
+                  <li>
+                    <a href="#meta-political-names" class="toc-h2 toc-link" data-title="Meta: political names">Meta: political names</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#phylogeny" class="toc-h1 toc-link" data-title="Phylogeny">Phylogeny</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -414,8 +428,12 @@ No API key required for this route.
     </span><span class="s2">"/occurrence/family/?"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"/occurrence/count/?"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"/taxonomy/species/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/taxonomy/genus/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/taxonomy/family/?"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"/phylogeny/?"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"/meta/version/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/meta/citations/traits/:id/?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"/meta/citations/occurrence/:id/?"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"/meta/politicalnames/?"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"/ranges/list/?"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"/ranges/species/?"</span><span class="p">,</span><span class="w">
@@ -531,7 +549,7 @@ No API key required for this route.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -606,7 +624,7 @@ No API key required for this route.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -661,7 +679,7 @@ No API key required for this route.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -754,7 +772,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -805,7 +823,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -874,7 +892,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -924,7 +942,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1007,7 +1025,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1080,7 +1098,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1147,7 +1165,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1219,7 +1237,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1278,7 +1296,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1320,7 +1338,7 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1396,7 +1414,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1479,7 +1497,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1566,7 +1584,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1639,7 +1657,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1714,7 +1732,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1789,7 +1807,7 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 <tr>
 <td>limit</td>
 <td>10</td>
-<td>number of results to return</td>
+<td>number of results to return (max: 1000)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -1890,6 +1908,130 @@ More paremeters will be added, e.g., `cultivaed`, `only_new_world`, etc.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p><code>GET https://bienapi.xyz/meta/citations/occurrence/:id/</code></p>
+<h1 id='meta'>Meta</h1><h2 id='meta-version'>Meta: version</h2>
+<p>Get current BIEN database version and release date</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/meta/version/'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/meta/version/"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"/meta/version/"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bien_metadata_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"db_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.1.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"db_release_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/meta/version/</code></p>
+<h2 id='meta-political-names'>Meta: political names</h2>
+<p>List political divisions and associated geonames codes.</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/meta/politicalnames/'</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/meta/politicalnames/"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"/meta/politicalnames/"</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">43624</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"county_parish_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Romania"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Olt"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_province_ascii"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Olt"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country.code"</span><span class="p">:</span><span class="w"> </span><span class="mi">798549</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state.code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"county_parish_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Romania"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Judeţul Maramureş"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state_province_ascii"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Judetul Maramures"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country.code"</span><span class="p">:</span><span class="w"> </span><span class="mi">798549</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"state.code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/meta/politicalnames/</code></p>
+<h1 id='phylogeny'>Phylogeny</h1>
+<p>Download BIEN phylogenies</p>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'faraday'</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="no">Faraday</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">url: </span><span class="s2">"https://bienapi.xyz"</span><span class="p">)</span>
+<span class="n">con</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="ss">:authorization</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BIEN_API_KEY"</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'/phylogeny'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s2">"conservative"</span><span class="p">}</span>
+<span class="n">res</span><span class="p">.</span><span class="nf">body</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: '</span><span class="s2">"</span><span class="nv">$BIEN_API_KEY</span><span class="s2">"</span><span class="s1">''</span> <span class="se">\</span>
+  <span class="s2">"https://bienapi.xyz/phylogeny?type=conservative"</span> | jq <span class="nb">.</span>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="n">crul</span><span class="p">)</span><span class="w">
+</span><span class="n">auth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sys.getenv</span><span class="p">(</span><span class="s1">'BIEN_API_KEY'</span><span class="p">))</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">HttpClient</span><span class="o">$</span><span class="n">new</span><span class="p">(</span><span class="s2">"https://bienapi.xyz"</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">get</span><span class="p">(</span><span class="s2">"phylogeny"</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"conservative"</span><span class="p">))</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"phylogeny_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"phylogeny_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BIEN_2016_conservative"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"replicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bien_conservative_phy.tre"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"citation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enquist, B.J., Sandel, B., Boyle, B., Donoghue II, J.C., Regetz, J., Svenning, J.C., McGill, B.J., Peet, R.K., Jorgensen, P.M., Condit, R., Thiers, B., Schildhauer, M., Smith, S.A., Hinchliff, C.E., Wiser, S.K., Violle, C., äÌmov·, I., Spencer, N., Dolins, S., Morueta-Holme, N., Marcuse-Kubitza, A., Kraft, N.J.B., Ott, J.E., Andelman, S., ter Steege, H., Phillips, O., Sloat, L.L., Narro, M.L., Casler, N., Guaderama, D.,  Merow, C., Maitner, B.S. (in prep) A general signature of taxonomic and phylogenetic diversity across the Land Plants of the New World"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"phylogeny"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(((Haplomitrium_blumei:644.869922,Apotreubia_nana:644.869922):20.905451,..."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://bienapi.xyz/phylogeny/</code></p>
+
+<p><strong>Query Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>&quot;conservative&quot;</td>
+<td>the type of phylogeny, conservative or complete</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <!-- <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
