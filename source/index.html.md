@@ -33,6 +33,16 @@ Get a token using the [/token](#token) route.
 You must get your own personal API key.
 </aside>
 
+# Data format
+
+You can get two types of data back from this API: **JSON** and **CSV**. The way you toggle this behavior is through the HTTP Accept header. The default type is JSON; if you want JSON you don't need to set the Accept header, but you can if you want.
+
+To get CSV back, you'll need to set the Accept header as `Accept: text/csv`.
+
+To set the header for JSON do `Accept: application/json`.
+
+A few routes ignore the Accept header and always return JSON: [/token](#token), [/authorized](#authorized), and [/heartbeat](#heartbeat)
+
 
 # Heartbeat
 
@@ -138,6 +148,52 @@ con$get("token", query = list(email = "jane.doe@gmail.com"))
 
 
 `GET https://bienapi.xyz/token`
+
+
+# Authorized?
+
+Check that your BIEN API key/token is valid
+
+```ruby
+require 'faraday'
+
+con = Faraday.new(url: "https://bienapi.xyz")
+con.headers[:authorization] = ENV["BIEN_API_KEY"]
+res = con.get '/authorized'
+res.body
+```
+
+```shell
+curl -H 'Authorization: '"$BIEN_API_KEY"'' \
+  "https://bienapi.xyz/authorized"
+```
+
+```r
+library(crul)
+auth <- list(Authorization = Sys.getenv('BIEN_API_KEY'))
+con <- HttpClient$new("https://bienapi.xyz", headers = auth)
+con$get("authorized")
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "authorized": true
+}
+```
+
+> If not authorized, you'll get a 403 error:
+
+```json
+{
+  "error": "token not found; get a token first with the /token route"
+}
+```
+
+
+`GET https://bienapi.xyz/authorized`
+
 
 
 # Species lists
